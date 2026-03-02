@@ -14,12 +14,23 @@ public:
 
         /*********************/
 
-        //approach->2
+        //approach->2 32 bit ka signed integer sabse bda jo 3 se divide ho wo hai 3 ki poer 19 if this number is divisble by this value so definetly is is a power of three.
 
         /********************/
-        return n>0 && 1162261467 %n==0;
+       // return n>0 && 1162261467 %n==0;
 
          /********************/
+
+         // Approach->3 iterative 
+
+
+          /********************/
+          if(n<=0) return false ;
+          while(n%3==0){
+            n=n/3;
+          }
+          return n==1;
+
         
     }
 };
