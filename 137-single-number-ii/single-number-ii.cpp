@@ -6,10 +6,10 @@ public:
         int ans=0;
         for(int k=0;k<=31;k++){
             temp=1<<k;
-            int countz=0,counto=0;
+            int counto=0;
             for(auto ele:nums){
-                if((ele&temp)==0 )  countz++;
-                else counto++;
+                if((ele&temp)!=0 )  counto++;
+              
 
             }
             if(counto%3==1)  ans=(ans|temp);
