@@ -12,7 +12,7 @@ public:
               
 
             }
-            if(counto%3==1)  ans=(ans|temp);
+            if(counto%3==1)  ans|=temp;
             
         }
         return ans;
