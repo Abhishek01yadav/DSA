@@ -1,23 +1,21 @@
 class Solution {
 public:
     int singleNumber(vector<int>& nums) {
-        sort(nums.begin(),nums.end());
-        int ans=INT_MIN;
         int n=nums.size();
-        int i;
-        bool flag=false;
-        for(i=1;i<n;i+=3){
-            if(nums[i]!=nums[i-1]) {
-                flag=true;
-                break;
+        int temp;
+        int ans=0;
+        for(int k=0;k<=31;k++){
+            temp=1<<k;
+            int countz=0,counto=0;
+            for(auto ele:nums){
+                if((ele&temp)==0 )  countz++;
+                else counto++;
+
             }
+            if(counto%3==1)  ans=(ans|temp);
+            
         }
-        if(flag){
-            ans=nums[i-1];
-        }
-        else ans=nums[n-1];
-
-      return ans;
-
+        return ans;
+        
     }
 };
