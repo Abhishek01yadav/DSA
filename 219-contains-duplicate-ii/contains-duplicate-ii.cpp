@@ -5,11 +5,15 @@ public:
         unordered_map<int,int>mp;
         for(int i=0;i<n;i++){
             if(mp.count(nums[i])){
-                if(abs(i-mp[nums[i]])<=k) return true;
-            }
-            mp[nums[i]]=i;
-        }
+                if(abs(mp[nums[i]]-i)<=k) return true;
 
-      return false;  
+            }
+            
+                mp[nums[i]]=i;
+        
+
+        }
+        return false;
+        
     }
 };
