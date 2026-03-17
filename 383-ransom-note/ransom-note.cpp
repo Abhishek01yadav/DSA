@@ -1,15 +1,21 @@
 class Solution {
 public:
     bool canConstruct(string ransomNote, string magazine) {
-        vector<int> freq(26, 0);
-        for (char c :magazine )
-            freq[c - 'a']++;
-        for (char c : ransomNote) {
-            if (freq[c - 'a'] == 0)
-                return false;
-            freq[c - 'a']--;
+        unordered_map<char,int>mp;
+        for(auto ch:magazine){
+            mp[ch]++;
+
+        }
+
+        for(int i=0;i<ransomNote.size();i++){
+            if(mp.find(ransomNote[i])!=mp.end()){
+                mp[ransomNote[i]]--;
+                if(mp[ransomNote[i]]==-1) return false;
+            }
+            else  return false;
         }
         return true;
+
         
     }
 };
