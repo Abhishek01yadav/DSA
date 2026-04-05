@@ -1,0 +1,30 @@
+class Solution {
+public:
+bool  static cmp(vector<int>&a, vector<int>&b){
+    return a[1]<b[1];
+}
+    int findMinArrowShots(vector<vector<int>>& intervals) {
+        int ans=0;
+
+        int n=intervals.size();
+
+        sort(intervals.begin(),intervals.end(),cmp);
+
+        int lastendtime=intervals[0][1];
+
+        for(int i=1;i<n;i++)
+        {
+            if(intervals[i][0]<=lastendtime)
+            {
+                ans++; 
+            }
+            else
+            {
+                 lastendtime=intervals[i][1];
+            }
+        }
+
+        return  intervals.size()-ans;
+        
+    }
+};
