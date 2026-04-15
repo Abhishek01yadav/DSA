@@ -27,7 +27,7 @@ int solve2(int idx,vector<int>& nums){
         int n=nums.size();
         dp=vector<int>(101,-1);
    
-       return  solve2(n-1,nums);
+       return  solve(n-1,nums);
 
         
     }
