@@ -33,19 +33,19 @@ public:
 
 // }
 
-ll fbu(int n,int k,int t){
+ll fbu(int N,int k,int T){
     vector<vector<ll>>dp= vector<vector<ll>>(1005,vector<ll>(1005,0));
     dp[0][0]=1;
     
-    for(int i=1;i<=n;i++){
-        for(int j=1;j<=t;j++){
-            for(int r=1;r<=k;r++){
-                if(j-r <0) break;
-                dp[i][j]+=(dp[i-1][j-r])%mod;
+    for(int n=1;n<=N;n++){
+        for(int t=1;t<=T;t++){
+            for(int i=1;i<=k;i++){
+                if(t-i<0) break;
+                dp[n][t]+=(dp[n-1][t-i])%mod;
             }
         }
     }
-    return dp[n][t] % mod;
+    return dp[N][T] % mod;
 
 
 
