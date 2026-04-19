@@ -6,14 +6,16 @@ int f(vector<vector<int>>& obstacleGrid,int i,int j,int m,int n){
 
     // obstacle
     if (obstacleGrid[i][j] == 1) return 0;
-
+int ans=0;
     // destination
     if (i == m-1 && j == n-1) return 1;
     if(dp[i][j]!=-1) return dp[i][j];
 
     // move right + down
-    return  dp[i][j]=f(obstacleGrid, i+1, j, m, n) +
+     ans=f(obstacleGrid, i+1, j, m, n) +
            f(obstacleGrid, i, j+1, m, n);
+
+           return dp[i][j]=ans;
     
 
 }
