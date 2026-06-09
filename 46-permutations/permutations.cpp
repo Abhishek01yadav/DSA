@@ -1,31 +1,25 @@
 class Solution {
 public:
-    void solve(vector<int> ip,
-               vector<int> op,
-               vector<vector<int>>& ans) {
+void solve(int idx,vector<int>& nums, vector<vector<int>>&ans){
+    int n=nums.size();
+    if(idx==n){
+        ans.push_back(nums);
+        return ;
 
-        if (ip.size() == 0) {
-            ans.push_back(op);
-            return;
-        }
-
-        for (int i = 0; i < ip.size(); i++) {
-
-            vector<int> newip = ip;
-            vector<int> newop = op;
-
-            newop.push_back(ip[i]);
-            newip.erase(newip.begin() + i);
-
-            solve(newip, newop, ans);
-        }
     }
 
-    vector<vector<int>> permute(vector<int>& nums) {
-        vector<vector<int>> ans;
-        vector<int> op;
+    for(int i=idx;i<n;i++){
+        swap(nums[i],nums[idx]);
+        solve(idx+1,nums,ans);
+        swap(nums[i],nums[idx]);
 
-        solve(nums, op, ans);
+    }
+}
+  
+    vector<vector<int>> permute(vector<int>& nums) {
+        vector<vector<int>>ans;
+        solve(0,nums,ans);
         return ans;
+        
     }
 };
