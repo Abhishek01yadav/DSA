@@ -16,7 +16,7 @@ void bfs(int row,int col,vector<vector<int>>& vis,vector<vector<char>>& grid){
         for(int delrow=-1 ;delrow<=1;delrow++){
             for(int delcol=-1;delcol<=1;delcol++)
             {
-                if(delrow==0 && delcol==0) continue;
+               // if(delrow==0 && delcol==0) continue;
                   if(abs(delrow) + abs(delcol) != 1) continue;
                 int nrow=row+delrow;
                 int ncol=col+delcol;
