@@ -11,3 +11,4 @@ SET N=N-1;
 
   );
 END
+#offset 0 base indexing leta hai isliye set n=n-1 kiya hai.
