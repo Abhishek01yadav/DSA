@@ -5,10 +5,11 @@ public:
         for (auto ele : nums) {
             mp[ele]++;
         }
+       // tc->o(n2) worst case 
+       for (auto ele : nums) {
+           if( mp[ele]==1 ) return ele;
+        }
        
-       for(auto x:mp){
-        if(x.second ==1) return x.first;
-       }
 
         return -1;
     }
