@@ -16,10 +16,11 @@ public:
                 cnt--;
             }
         }
-        int cnt1=0;
-        for(int i=0;i<nums.size();i++){
-            if(nums[i]==ele) cnt1++;
-        }
+        int cnt1=count(nums.begin(),nums.end(),ele);
+      //  int cnt1=0;
+        // for(int i=0;i<nums.size();i++){
+        //     if(nums[i]==ele) cnt1++;
+        // }
         if(cnt1>nums.size()/2) return ele;
         return -1;
     }
