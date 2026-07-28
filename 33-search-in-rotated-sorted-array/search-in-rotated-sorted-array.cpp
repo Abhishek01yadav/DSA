@@ -1,45 +1,45 @@
 class Solution {
 public:
-int findk(vector<int>& nums){
-    int n=nums.size();
-    int k=0;
-    for(int i=0;i<n-1;i++){
-        if(nums[i]>nums[i+1]){
-            k=i+1;
-            break;
+    int findk(vector<int>& nums) {
+        int n = nums.size();
+        int k = 0;
+        for (int i = 0; i < n - 1; i++) {
+            if (nums[i] > nums[i + 1]) {
+                k = i + 1;
+                break;
+            }
         }
-
+        return k;
     }
-    return k;
-
-}
     int search(vector<int>& nums, int target) {
-int k=findk(nums);
-        reverse(nums.begin(),nums.begin()+k);
+        int n = nums.size();
 
-        reverse(nums.begin()+k,nums.end());
-        
-        reverse(nums.begin(),nums.end());
+        int k = findk(nums);
 
+        if (k > n)
+        {
+            k = k % n;
+        }
 
-        int n=nums.size();
-        int low=0,high=n-1;
+        reverse(nums.begin(), nums.begin() + k);
 
-        while(low <= high){
-            int mid=low+(high-low)/2;
-            if(nums[mid]==target){
-                return (k+mid)%n;
-            }
-            else if(nums[mid]<target){
-                low=mid+1;
-            }
-            else {
-                high=mid-1;
+        reverse(nums.begin() + k, nums.end());
+
+        reverse(nums.begin(), nums.end());
+
+        int low = 0, high = n - 1;
+
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            if (nums[mid] == target) {
+                return (k + mid)%n;
+            } else if (nums[mid] < target) {
+                low = mid + 1;
+            } else {
+                high = mid - 1;
             }
         }
 
-    
-return -1;
-        
+        return -1;
     }
 };
