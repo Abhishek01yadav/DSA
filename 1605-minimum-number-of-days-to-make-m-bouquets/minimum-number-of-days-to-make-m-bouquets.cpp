@@ -2,22 +2,26 @@ class Solution {
 public:
 bool ispossible(vector<int>& bloomday,int day, int m, int k){
     int count =0;
-    int bouqets=0;
+    int noB=0;
     for(auto bloom : bloomday){
         if(bloom  <= day){// particular flower bloom hua hai ya nhi
             count++;
-            if(count==k){
-                bouqets++;// ek possible bouqet mil gya 
-                count=0;
-            }
+            
+            // if(count==k){
+            //     bouqets++;// ek possible bouqet mil gya 
+            //     count=0;
+            // }
         }
         else{
+             noB+=(count/k);
             count=0;
         }
+       
 
 
     }
-    return bouqets >= m;
+    noB+=(count/k);
+    return noB >= m;
     }
 
     int minDays(vector<int>& bloomday, int m, int k) {
