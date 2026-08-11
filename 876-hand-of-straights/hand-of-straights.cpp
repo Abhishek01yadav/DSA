@@ -1,43 +1,39 @@
 class Solution {
 public:
-
-bool check(vector<int>& hand, int groupSize,int i){
-    int n=hand.size();
-    int start=hand[i];
-    hand[i]=-1;
-    int count=1;
-    i++;
-
-    while(count < groupSize  && i <n){
-        if(hand[i]==start+1){
-            hand[i]=-1;
-            count++;
-            start++;
-        }
-
-        i++;
-    }
-
-    if(count == groupSize){
-        return true;
-    }
-    
-    else{
-        return false;
-    }
-
-}
-
-
     bool isNStraightHand(vector<int>& hand, int groupSize) {
         int n=hand.size();
-        if(n % groupSize !=0) return false;
-        sort(hand.begin(),hand.end());
-        for(int i=0;i<n;i++ ){
-            if(hand[i]!=-1){
-                if((check(hand,groupSize,i))==false) return false;
+        if(n % groupSize !=0){
+            return false;
+        }
+
+        map<int,int>mp;
+
+        priority_queue<int,vector<int>,greater<int>>pq;
+
+        for(int &x : hand){
+            mp[x]++;
+            pq.push(x);
+
+        }
+
+
+        while(!pq.empty()){
+            int start=pq.top();
+            pq.pop();
+
+            if(mp[start]==0)  continue;
+
+            for(int i=0;i<groupSize;i++){
+                int curr=start+i;
+
+                if(mp[curr]==0){
+                    return false;
+                }
+
+                mp[curr]--;
             }
         }
+
         return true;
     }
 };
