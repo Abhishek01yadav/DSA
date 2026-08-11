@@ -2,10 +2,10 @@ class Solution {
 public:
     int leastInterval(vector<char>& tasks, int n) {
        
-        vector<int>freq(26,0);
+       unordered_map<char,int>mp;
 
         for(auto &ch :tasks){
-            freq[ch-'A']++;
+            mp[ch]++;
 
         }
 
@@ -13,11 +13,9 @@ public:
 
         priority_queue<int>pq;
 
-        for(int i=0;i<26;i++){
-            if(freq[i]> 0){
-                pq.push(freq[i]);
-
-            }
+        for(auto &ele :mp){
+                pq.push(ele.second);
+           
         }
 
 
@@ -27,16 +25,16 @@ public:
            for(int i=1;i<=n+1;i++){
 
             if(!pq.empty()){
-            int frequency=pq.top();
+            int freq=pq.top();
             pq.pop();
-            frequency--;
-            temp.push_back(frequency);
+            freq--;
+            temp.push_back(freq);
            }
            }
 
-           for(int &ele :temp){
-            if(ele>0){
-                pq.push(ele);
+           for(int &freq :temp){
+            if(freq>0){
+                pq.push(freq);
             }
            }
 
