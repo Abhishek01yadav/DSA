@@ -4,6 +4,7 @@ public:
  static bool  cmp (const pair<int,int>&ele1,const pair<int,int>&ele2){
     return ele1.second >ele2.second;
 }
+
     vector<int> topKFrequent(vector<int>& nums, int k) {
         int n=nums.size();
         unordered_map<int,int>mp;
@@ -12,17 +13,22 @@ public:
         }
 
         vector<pair<int,int>>p(mp.begin(),mp.end());
+        priority_queue<pair<int,int>>pq;
 
-        sort(p.begin(),p.end(),cmp);
+        for(auto &x:mp){
+            pq.push({x.second,x.first});
+        }
 
         vector<int>ans;
 
-        for(int i=0;i<k;i++){
-            ans.push_back(p[i].first);
+        for(int i=0;i<k;i++)
+        {
+            int x=pq.top().second;
+            ans.push_back(x);
+
+            pq.pop();
         }
 
-
-      
 
 
 return ans;
