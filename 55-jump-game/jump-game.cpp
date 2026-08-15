@@ -9,7 +9,7 @@ public:
             if(i > maxidx) return false;
             maxidx=max(i+nums[i],maxidx);
 
-            if(maxidx>=n-1) return  true;
+            
 
 
         }
