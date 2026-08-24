@@ -19,24 +19,12 @@ public:
         
         }
         temp=head;
-        if(size%2 !=0){
+        
             for(int i=1;i<(size/2)+1;i++){
                 temp=temp->next;
             }
-        }
-
-            else
-            {
-                 for(int i=1;i<(size/2)+1;i++){
-                temp=temp->next;
-            }
-
-            }
-
-            head=temp;
-
-
         
+            head=temp;
 
 return head;
         
