@@ -7,13 +7,13 @@ public:
          unordered_map< ListNode* ,int>mp;
 
          while(temp !=NULL){
-            if(mp.find(temp)==mp.end()){
-                mp[temp]++;
-                temp=temp->next;
-            }
-            else{
+            if(mp.find(temp)!=mp.end()){
                 return temp;
             }
+
+            mp[temp]=1;
+            temp=temp->next;
+           
         
          }
 return NULL;
