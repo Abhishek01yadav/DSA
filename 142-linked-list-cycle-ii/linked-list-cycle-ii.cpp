@@ -2,21 +2,26 @@
 class Solution {
 public:
     ListNode *detectCycle(ListNode *head) {
+          ListNode* slow = head;
+        ListNode* fast = head;
 
-         ListNode *temp=head;
-         unordered_map< ListNode* ,int>mp;
+        while (fast != NULL && fast->next != NULL) {
+            slow = slow->next;
+            fast = fast->next->next;
 
-         while(temp !=NULL){
-            if(mp.find(temp)!=mp.end()){
-                return temp;
+            if (slow == fast) {
+                // i ll find the staring point of the cycle or loop.
+                slow = head;
+                while (slow != fast) {
+                    slow = slow->next;
+                    fast = fast->next;
+                }
+                return slow;
             }
-
-            mp[temp]=1;
-            temp=temp->next;
            
-        
-         }
-return NULL;
+           
+        }
+        return NULL;
         
     }
 };
