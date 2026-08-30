@@ -1,16 +1,23 @@
 class Solution {
 public:
-vector<vector<int>>dp;
-int solve(int r,int c,vector<vector<int>>&grid,int m,int n){
-    if(r>=m-1 ||  c>=n-1) return 1;
-    if(dp[r][c]!=-1) return dp[r][c];
-   return   dp[r][c]=solve(r+1,c,grid,m,n)+solve(r,c+1,grid,m,n);
-}
+int dp[105][105];
+int f(int row,int col,int m,int n){
+    if(row>=m || col>=n) return 0;
+    if(row ==m-1 && col==n-1){
+        return 1;
+    }
+    if(dp[row][col]!=-1) return dp[row][col];
 
+    return  dp[row][col]=f(row+1,col,m,n)+ f(row,col+1,m,n);
+
+
+}
     int uniquePaths(int m, int n) {
-        dp=vector<vector<int>>(m,vector<int>(n,-1));
-        vector<vector<int>>grid(m,vector<int>(n));
-         return solve(0,0,grid,m,n);
+        memset(dp,-1,sizeof(dp));
+       
+        return f(0,0,m,n);
+
+       
         
         
     }
