@@ -5,12 +5,12 @@ int dp[205][205];
     int f(int i,int j,vector<vector<int>>& grid)
     {
         if(i==0 && j==0) return grid[0][0]; 
-        if(i<0 || j<0) return 100004 ;
+        if(i<0 || j<0) return INT_MAX ;
 
         if(dp[i][j]!=-1) return dp[i][j];
 
-        int up= grid[i][j]+f(i-1,j,grid);
-        int left= grid[i][j]+f(i,j-1,grid);
+        long long  up= (long long)(grid[i][j])+f(i-1,j,grid);
+        long long  left=(long long) ( grid[i][j])+f(i,j-1,grid);
 
         return  dp[i][j]= min(up,left);
 
