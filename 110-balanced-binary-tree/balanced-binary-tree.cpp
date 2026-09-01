@@ -18,9 +18,11 @@ int height(TreeNode* root){
         if(abs(lh-rh)>1) return false;
 
         bool left=isBalanced(root->left);
+        if(!left) return false;
         bool right=isBalanced(root->right);
+        if(!right) return false;
 
-        if(!left || !right) return false;
+       
 
         return true;
         
