@@ -10,13 +10,17 @@ public:
         q.push(root);
        
         while(!q.empty()){
-            int size=q.size();
+            int size=q.size();//current level ka size
             vector<int>level;
+
+
             for(int i=0;i<size;i++){
+                //deque the root
                 TreeNode* node=q.front();
                 q.pop();
 
                 level.push_back(node->val);
+
 
                 //enque the left and right vhild if exists
                 if(node->left !=NULL) q.push(node->left);
