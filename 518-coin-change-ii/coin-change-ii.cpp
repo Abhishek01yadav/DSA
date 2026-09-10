@@ -1,31 +1,27 @@
 class Solution {
 public:
-int dp[301][5001];
-int f(int ind,int amount,vector<int>& coins){
-    
-    if(ind==0){
-        
-        
-        if( amount % coins[0] ==0) return 1;
-        
-          return 0;
-        
-    }
-    if(dp[ind][amount] !=-1) return dp[ind][amount];
-
-    int notpick=f(ind-1,amount,coins);
-    int pick=0;
-    if( amount >= coins[ind]){
-        pick=f(ind,amount-coins[ind],coins);
-    }
-
-    return  dp[ind][amount]=pick + notpick;
-
-}
+   
+   
     int change(int amount, vector<int>& coins) {
-        int n=coins.size();
-        memset(dp,-1,sizeof(dp));
-        return f(n-1,amount,coins);
-        
+        int n = coins.size();
+        vector<vector<long  >> dp(n, vector<long  >(amount+1, 0));
+        for (int amt = 0; amt <= amount; amt++) {
+            if(amt % coins[0] ==0) dp[0][amt] = 1;
+            else dp[0][amt]=0;
+        }
+
+        for (int ind = 1; ind < n; ind++) {
+            for (int amt = 0; amt <= amount; amt++) {
+
+        long   notpick = dp[ind - 1][amt];
+                long  pick = 0;
+                if (amt >= coins[ind]) {
+                    pick = dp[ind][amt-coins[ind]];
+                }
+
+               dp[ind][amt] = min((long)INT_MAX, pick + notpick);
+            }
+        }
+        return dp[n-1][amount];
     }
 };
