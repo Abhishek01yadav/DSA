@@ -3,6 +3,11 @@ public:
     void f(int idx, vector<int>& candidates, vector<int>& temp, int target,
            vector<vector<int>>& result) {
       
+      if(target==0){
+        result.push_back(temp);
+        return;
+
+      }
         if (idx  < 0) {
             if (target  == 0) {
                 result.push_back(temp);  
