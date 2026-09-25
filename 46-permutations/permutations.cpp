@@ -1,24 +1,14 @@
 class Solution {
 public:
-void solve(int idx,vector<int>& nums, vector<vector<int>>&ans){
-    int n=nums.size();
-    if(idx==n){
-        ans.push_back(nums);
-        return ;
-
-    }
-
-    for(int i=idx;i<n;i++){
-        swap(nums[i],nums[idx]);
-        solve(idx+1,nums,ans);
-        swap(nums[i],nums[idx]);
-
-    }
-}
-  
     vector<vector<int>> permute(vector<int>& nums) {
-        vector<vector<int>>ans;
-        solve(0,nums,ans);
+        vector<vector<int>> ans;
+        sort(nums.begin(),nums.end());
+        
+        do{
+            ans.push_back(nums);
+            
+        }
+        while( next_permutation(nums.begin(),nums.end()));
         return ans;
         
     }
