@@ -29,7 +29,7 @@ bool isSafe(int row,int col,vector<string>&board){
     
     return true;
 }
-void solve(int row,int col,vector<string>&board, vector<vector<string>>&ans){
+void solve(int col,vector<string>&board, vector<vector<string>>&ans){
     int n=board.size();
     if(col==n){
         ans.push_back(board);
@@ -39,7 +39,7 @@ void solve(int row,int col,vector<string>&board, vector<vector<string>>&ans){
     for(int row=0;row<n;row++){
         if(isSafe(row,col,board)){
             board[row][col]='Q';
-            solve(row,col+1,board,ans);
+            solve(col+1,board,ans);
             board[row][col]='.';
 
         }
@@ -58,7 +58,7 @@ void solve(int row,int col,vector<string>&board, vector<vector<string>>&ans){
             board[i]=s;
         }
 
-        solve(0,0,board,ans);
+        solve(0,board,ans);
 
         
 
