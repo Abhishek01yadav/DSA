@@ -1,35 +1,7 @@
 class Solution {
 public:
 
-bool isSafe(int row,int col,vector<string>&board){
-    int n= board.size();
-    int r=row;
-    int c=col;
-
-    // check for left upper diagonal
-    while(row >=0 && col>=0){
-        if(board[row][col]=='Q') return false;
-        row--;
-        col--;
-    }
-    row=r;
-    col=c;
-    while(col>=0){
-        if(board[row][col]=='Q') return false;
-        col--;
-    }
-
-    row=r;
-    col=c;
-    while(row < n && col>=0){
-        if(board[row][col]=='Q') return false;
-        row++;
-        col--;
-    }
-    
-    return true;
-}
-void solve(int col,vector<string>&board, vector<vector<string>>&ans){
+void solve(int col,vector<string>&board,vector<int>&leftRow, vector<int>&upperDiagonal,vector<int> &lowerDiagonal,vector<vector<string>>&ans){
     int n=board.size();
     if(col==n){
         ans.push_back(board);
@@ -37,12 +9,24 @@ void solve(int col,vector<string>&board, vector<vector<string>>&ans){
     }
 
     for(int row=0;row<n;row++){
-        if(isSafe(row,col,board)){
+        if(leftRow[row]==0 && upperDiagonal[n-1 + col-row]==0 && lowerDiagonal[row+col]==0){
+
+        
+        
             board[row][col]='Q';
-            solve(col+1,board,ans);
+            leftRow[row]=1;
+            upperDiagonal[n-1 + col-row]=1;
+            lowerDiagonal[row+col]=1;
+
+            solve(col+1,board,leftRow,upperDiagonal,lowerDiagonal,ans);
             board[row][col]='.';
+             leftRow[row]=0;
+            upperDiagonal[n-1 + col-row]=0;
+            lowerDiagonal[row+col]=0;
+
 
         }
+        
     }
 
       
@@ -57,13 +41,9 @@ void solve(int col,vector<string>&board, vector<vector<string>>&ans){
         for(int i=0;i<n;i++){
             board[i]=s;
         }
+        vector<int>leftRow(n,0),upperDiagonal(2*n -1 ,0),lowerDiagonal(2*n -1 ,0);
 
-        solve(0,board,ans);
-
-        
-
-         
-        
+        solve(0,board,leftRow,upperDiagonal,lowerDiagonal,ans);
 
        return ans; 
         
