@@ -1,7 +1,7 @@
 class Solution {
 public:
-bool ispalli(string s){
-    int i=0,j=s.size()-1;
+bool ispalli(string s,int start,int end){
+    int i=start,j=end;
     while(i<j){
         if(s[i]!=s[j]) return false;
         i++;
@@ -17,9 +17,9 @@ void f(int idx,string  s,vector<vector<string>>&ans,vector<string>&ds){
     }
 
     for(int i=idx;i<n;i++ ){
-        string str=s.substr(idx,i-idx+1);
-        if(ispalli(str)){
-            ds.push_back(str); 
+      
+        if(ispalli(s,idx,i)){
+            ds.push_back(s.substr(idx,i-idx+1)); 
             f(i+1,s,ans,ds);
             ds.pop_back();
         }
