@@ -1,38 +1,38 @@
 class Solution {
 public:
-bool ispallin(string s){
+bool ispalli(string s){
     int i=0,j=s.size()-1;
-    while(i<=j){
-        if(s[i]!=s[j]) return false ;
+    while(i<j){
+        if(s[i]!=s[j]) return false;
         i++;
         j--;
     }
     return true;
 }
-vector<vector<string>>res;
-void solve(string &s,vector<string>&temp,int start){
-    if(start==s.size()){
-        res.push_back(temp);
+void f(int idx,string  s,vector<vector<string>>&ans,vector<string>&ds){
+    int n=s.size();
+    if(idx==n){
+        ans.push_back(ds);
         return ;
     }
-    string pal_str;
-    for(int i=start;i<s.size();i++){
-        pal_str+=s[i];
-        if(ispallin(pal_str)){
-            temp.push_back(pal_str);
-            solve(s,temp,i+1);
-            temp.pop_back();
+
+    for(int i=idx;i<n;i++ ){
+        string str=s.substr(idx,i-idx+1);
+        if(ispalli(str)){
+            ds.push_back(str); 
+            f(i+1,s,ans,ds);
+            ds.pop_back();
         }
+
+
     }
+
 }
     vector<vector<string>> partition(string s) {
-        // vector<vector<string>>res;
-         vector<string>temp;
-        
-         solve(s,temp,0);
-         return res;
-
-
+        vector<vector<string>>ans;
+        vector<string>ds;
+        f(0,s,ans,ds);
+        return  ans;
         
     }
 };
