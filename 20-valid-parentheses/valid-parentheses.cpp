@@ -12,9 +12,10 @@ public:
            else    {
             if(st.empty()) return false;
             char ch=st.top(); 
+            st.pop();
            
             if(ele==')' && ch=='('   ||  ele=='}' && ch=='{'   ||  ele==']' && ch=='['   ){
-                st.pop();
+               //matched
             }
              else  return false;
 
