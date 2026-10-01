@@ -9,16 +9,21 @@ public:
                 st.push(ele);
             }
 
-           else  if ((st.size() > 0 && st.top() == '(' && ele == ')') ||
-                st.size() > 0 && st.top() == '{' && ele == '}' ||
-                st.size() > 0 && st.top() == '[' && ele == ']') {
+           else    {
+            if(st.empty()) return false;
+            char ch=st.top(); 
+           
+            if(ele==')' && ch=='('   ||  ele=='}' && ch=='{'   ||  ele==']' && ch=='['   ){
                 st.pop();
             }
-            else return false;
+             else  return false;
+
+           }
+
+           
+          
         }
 
-        if (st.empty())
-            return true;
-        return false;
+       return st.empty();
     }
 };
