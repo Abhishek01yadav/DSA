@@ -15,7 +15,12 @@ int maxdepth(TreeNode* root){
        int rh=maxdepth(root->right);
        if(abs(lh-rh) > 1) return false;
 
-       return  isBalanced(root->left) && isBalanced(root->right);
+       bool left=isBalanced(root->left);
+       bool right=isBalanced(root->right);
+
+       if(!left || !right) return false;
+
+       return true;
 
         
     }
