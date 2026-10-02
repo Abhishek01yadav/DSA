@@ -3,25 +3,22 @@ class Solution {
 public:
 int maxdepth(TreeNode* root){
     if(root==NULL) return 0;
-    int lh=maxdepth(root->left);
+    int lh=maxdepth(root->left); 
     int rh=maxdepth(root->right);
+    if(lh==-1 || rh==-1) return -1;
+    if(abs(lh-rh) > 1) return -1;
     return 1 + max(lh,rh);
 }
 
     bool isBalanced(TreeNode* root) {
+        if(maxdepth(root) == -1) return false;
+        return true;
        
-      if(root==NULL) return  true;
-       int lh=maxdepth(root->left);
-       int rh=maxdepth(root->right);
-       if(abs(lh-rh) > 1) return false;
+    
 
-       bool left=isBalanced(root->left);
-       bool right=isBalanced(root->right);
+      
 
-       if(!left || !right) return false;
-
-       return true;
-
+    
         
     }
 };
