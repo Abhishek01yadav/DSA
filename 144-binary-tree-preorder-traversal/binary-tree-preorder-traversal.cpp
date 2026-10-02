@@ -1,24 +1,19 @@
 
 class Solution {
 public:
-void pre(TreeNode* root,vector<int>&ans){
+void preorder(TreeNode* root, vector<int>&ans){
     if(root==NULL) return;
-
     ans.push_back(root->val);
-    pre(root->left,ans);
-    pre(root->right,ans);
-     
-
-     
-
+    preorder(root->left,ans);
+     preorder(root->right,ans);
 
 
 }
     vector<int> preorderTraversal(TreeNode* root) {
-        vector<int>ans;
-        pre(root,ans);
-        return ans;
-
+      
+ vector<int>ans;
+ preorder(root,ans);
+ return ans;
         
     }
 };
