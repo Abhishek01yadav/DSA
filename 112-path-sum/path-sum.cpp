@@ -7,17 +7,17 @@ bool  f(TreeNode * root ,int sum,int &targetSum){
     sum+=root->val;
 //if we reaches the leaf node;
 if(root->left==NULL && root->right==NULL){
-    if(sum==targetSum) return true;
-    return false;
+    return sum==targetSum;
 }
 
- bool ls=   f(root->left,sum,targetSum);
+ if(f(root->left,sum,targetSum))  return true;
+
  
 
- bool  rs=f(root->right,sum,targetSum);
+ return f(root->right,sum,targetSum);
 
 
- return ls|| rs;
+
    
    
 
