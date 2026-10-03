@@ -11,8 +11,10 @@ if(root->left==NULL && root->right==NULL){
     return false;
 }
 
- int ls=   f(root->left,sum,targetSum);
- int rs=f(root->right,sum,targetSum);
+ bool ls=   f(root->left,sum,targetSum);
+ 
+
+ bool  rs=f(root->right,sum,targetSum);
 
 
  return ls|| rs;
