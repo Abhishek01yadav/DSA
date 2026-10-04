@@ -1,80 +1,35 @@
 class Solution {
 public:
-void dfs(int node,vector<vector<int>>& adjls,vector<int> &vis){
-  vis [node]=1;
 
-  // sare nodes k neighbours ko call lga do.
-  for(auto it:adjls[node]){
-      if(!vis[it]){
-          dfs(it,adjls,vis);
-      }
-  }
+void dfs(int node,vector<vector<int>>& isConnected,vector<int>&vis){
+    int n=isConnected.size();
+    vis[node]=1;
+   
+        for(int j=0;j<isConnected[node].size();j++){
+            
+           if(isConnected[node][j]==1  &&  !vis[j] ) {
+            vis[j]=1;
+            dfs(j,isConnected,vis);
+           }
+
+        }
     
 }
-    int findCircleNum(vector<vector<int>>& adj) {
-        int V=adj.size();
-       vector< vector<int>>adjls(V);
-        // converting adjacency matri int o adj list
-        for(int i=0;i<V;i++){
-            for(int j=0;j<V;j++){
-                if(adj[i][j]==1 && i!=j){
-                    adjls[i].push_back(j);
-                    adjls[j].push_back(i);
-                     
 
-                }
-            }
-        }
 
-       vector< int> vis(V,0);
+    int findCircleNum(vector<vector<int>>& isConnected) {
+
+        int n=isConnected.size();
         int cnt=0;
-        for(int i=0;i<V;i++){
-            if(!vis[i]){
+        vector<int>vis(n,0);
+        for(int i=0;i<n;i++){
+            if(  !vis[i]){
                 cnt++;
-                dfs(i,adjls,vis);
+                dfs(i,isConnected,vis);
             }
-        }
 
-       return cnt; 
+        }
+        return cnt;
+        
     }
 };
-// class Solution {
-// public:
-//     void dfs(int node, vector<vector<int>>& adjls, vector<int>& vis) {
-//         vis[node] = 1;
-
-//         for (auto it : adjls[node]) {
-//             if (!vis[it]) {
-//                 dfs(it, adjls, vis);
-//             }
-//         }
-//     }
-
-//     int findCircleNum(vector<vector<int>>& adj) {
-//         int V = adj.size();
-
-//         vector<vector<int>> adjls(V);
-
-//         // Converting adjacency matrix into adjacency list
-//         for (int i = 0; i < V; i++) {
-//             for (int j = 0; j < V; j++) {
-//                 if (adj[i][j] == 1 && i != j) {
-//                     adjls[i].push_back(j);
-//                 }
-//             }
-//         }
-
-//         vector<int> vis(V, 0);
-
-//         int cnt = 0;
-
-//         for (int i = 0; i < V; i++) {
-//             if (!vis[i]) {
-//                 cnt++;
-//                 dfs(i, adjls, vis);
-//             }
-//         }
-
-//         return cnt;
-//     }
-// };
