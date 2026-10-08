@@ -6,7 +6,7 @@ public:
         vector<int>ans;
 
         for(int i=0;i<n;i++){
-            cout<<"run"<<endl;
+           
             for(int j=0;j<m;j++){
                 if(nums2[j]==nums1[i])
                 {
