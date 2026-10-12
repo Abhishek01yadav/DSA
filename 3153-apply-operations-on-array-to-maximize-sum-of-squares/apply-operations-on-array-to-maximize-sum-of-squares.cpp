@@ -2,6 +2,7 @@ class Solution {
 public:
 int mod=1e9+7;
     int maxSum(vector<int>& nums, int k) {
+        
         vector<int>cnt(32,0);
         for(int &num :nums){
             for(int b=0;b<32;b++){
