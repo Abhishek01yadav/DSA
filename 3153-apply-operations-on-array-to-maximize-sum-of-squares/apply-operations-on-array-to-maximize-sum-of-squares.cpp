@@ -1,33 +1,27 @@
 class Solution {
 public:
-    const int mod = 1e9 + 7;
-
+int mod=1e9+7;
     int maxSum(vector<int>& nums, int k) {
-        vector<int> cnt(32, 0);
-
-        for (int x : nums) {
-            for (int bit = 0; bit < 32; bit++) {
-                if (x & (1LL << bit)) {
-                    cnt[bit]++;
-                }
+        vector<int>cnt(32,0);
+        for(int &num :nums){
+            for(int b=0;b<32;b++){
+                if(num & (1<<b)) cnt[b]++;
             }
         }
+        long long result=0;
 
-        long long sum = 0;
+        while(k--){
+            long long curr=0;
+            for(int b=0;b<32;b++){
+               if(cnt[b]>0){
+                cnt[b]--;
+               curr= (curr | 1<<b);
+               }
 
-        for (int i = 0; i < k; i++) {
-            long long x = 0;
-
-            for (int bit = 0; bit < 32; bit++) {
-                if (cnt[bit] > 0) {
-                    x |= (1LL << bit);
-                    cnt[bit]--;
-                }
             }
+            result=(result+(curr * curr)) %mod;
 
-            sum = (sum + x * x % mod) % mod;
         }
-
-        return sum;
+        return result;
     }
 };
