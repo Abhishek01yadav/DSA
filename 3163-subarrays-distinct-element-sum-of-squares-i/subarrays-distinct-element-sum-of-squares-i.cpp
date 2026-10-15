@@ -7,18 +7,21 @@ public:
         for(int i=0;i<n;i++){
             set<int>temp;
            temp.insert(nums[i]);
-           res+=(temp.size()*temp.size());
+           int c=temp.size();
+           res+=(c*c);
             
             for(int j=i+1;j<n;j++)
             {
                 temp.insert(nums[j]);
-                res+=(temp.size()*temp.size());
+                int c=temp.size();
+                res+=(c*c);
 
             }
-            for(auto &ele: temp){
-                temp.erase(ele);
+            // for(auto &ele: temp){
+            //     temp.erase(ele);
 
-            }
+            // }
+            temp.clear();
         
         }
 
