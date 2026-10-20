@@ -9,7 +9,7 @@ typedef long long ll;
             mn=nums[i];
             mx=nums[i];
             
-            for(int j=i;j<n;j++){
+            for(int j=i+1;j<n;j++){
                 mn=min(mn,nums[j]);
                 mx=max(mx,nums[j]);
                 ll temp=mx-mn;
