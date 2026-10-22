@@ -14,12 +14,13 @@ public:
             
         }
 
-        else if(asc){
+         if(asc){
             int left_rot=n-nums[0];
             int right_rot=1+(nums.back()+1)+1;
             return min(left_rot,right_rot);
         }
-        else if(dsc) {
+        
+        if(dsc) {
 
             int left_rot=n-nums.back()+1;
             int right_rot=(nums.front()+1)%n+1;
