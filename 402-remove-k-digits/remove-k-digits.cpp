@@ -17,8 +17,8 @@ public:
             k--;
         }
 
-        // if (st.empty())
-        //     return "0";
+        if (st.empty())
+            return "0";
 
         string res;
         while (!st.empty()) {
