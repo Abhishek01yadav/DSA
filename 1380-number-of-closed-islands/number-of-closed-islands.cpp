@@ -35,7 +35,7 @@ void bfs(int row,int col,vector<vector<int>>& grid, vector<vector<int>>&vis){
          n=grid.size();
         m=grid[0].size();
         vector<vector<int>>vis(n,vector<int>(m,0));
-
+//step 1 eliminate kr diya outer islands ko 
         for(int i=0;i<n;i++){
             for(int j=0;j<m;j++){
                 bool border=(i==0 || j==0 || i==n-1 || j==m-1);
@@ -46,6 +46,8 @@ void bfs(int row,int col,vector<vector<int>>& grid, vector<vector<int>>&vis){
             }
         }
 
+
+//ab kewal closed islands bache.
        int cnt=0;
         for(int i=0;i<n;i++){
             for(int j=0;j<m;j++){
