@@ -9,7 +9,7 @@ public:
             if(mp.count(val))  {
                 return {i,mp[val]};
             }
-            else mp[nums[i]]=i;
+             mp[nums[i]]=i;
            
         }
         return {};
