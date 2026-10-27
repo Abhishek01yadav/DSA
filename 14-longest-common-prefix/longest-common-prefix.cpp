@@ -3,29 +3,17 @@ public:
 
     string longestCommonPrefix(vector<string>& strs) {
         int n=strs.size();
-        sort(strs.begin(),strs.end());
-        for(auto ele:strs){
-            cout<<ele<<" ";
+        for(int col=0;col<strs[0].size();col++){
+            char ch=strs[0][col];
+            for(int k=1;k<n;k++){
+                if(strs[k][col] !=ch || col>=strs[k].size()) {
+                    return strs[0].substr(0,col);
+                }
+            }
+
         }
-        
-        
-        string first=strs[0];
        
-        string last=strs[n-1];
-       
-        string res="";
 
-       int i=0,j=0;
-       while(i<first.size() && j <last.size()){
-        if(first[i]==last[j]) res+=first[i];
-        else break;
-       
-       
-        i++;
-        j++;
-        
-       }
-
-        return res;
+        return strs[0];
     }
 };
