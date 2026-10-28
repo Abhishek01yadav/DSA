@@ -3,7 +3,7 @@ public:
     bool isIsomorphic(string s, string t) {
         if(s.size() !=t.size()) return false;
         int i=0,j=0;
-        unordered_map<int,int>mp,mpp;
+        unordered_map<char,char>mp,mpp;
         while(i<s.size()){
            if(mp.find(s[i])!=mp.end() && mp[s[i]]!=t[j]){
         
