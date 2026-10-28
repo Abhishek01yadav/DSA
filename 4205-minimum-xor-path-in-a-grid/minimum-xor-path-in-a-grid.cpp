@@ -1,41 +1,25 @@
 class Solution {
 public:
+int m,n;
+vector<vector<vector<int>>>dp;
+int f(int i,int j,int ans,vector<vector<int>>& grid){
+    if(i==m || j==n) return INT_MAX;
+    ans=ans^grid[i][j];
+    if(i==m-1 && j==n-1) return ans;
+
+    if(dp[i][j][ans] !=-1) return dp[i][j][ans];
+    int right=f(i,j+1,ans,grid);
+    int down=f(i+1,j,ans,grid);
+    return dp[i][j][ans]= min(right,down);
+}
     int minCost(vector<vector<int>>& grid) {
-        int m=grid.size();
-        int n=grid[0].size();
-        vector<vector<bitset<1024>>>dp(m,vector<bitset<1024>>(n));
-        dp[0][0][grid[0][0]]=1;
+        m=grid.size();
+        n=grid[0].size();
+       dp.assign(m,vector<vector<int>>(n,vector<int>(1024,-1)));
+      
+        return f(0,0,0,grid);
 
-        for(int i=0;i<m;i++){
-            for(int j=0;j<n;j++){
-                if(i==0 && j==0 ) continue;
-                bitset<1024>up;
-                bitset<1024>left;
-                if(i>0){
-                    up=dp[i-1][j];
-                }
-                if(j>0){
-                    left=dp[i][j-1];
-                }
-                bitset<1024>combined=up | left;
 
-                for(int val=0;val<1024;val++){
-                    if(combined[val]){
-                        int xorval=val ^grid[i][j];
-                        dp[i][j][xorval]=1;
-                    }
-                }
-            }
-        }
-
-        bitset<1024>ans=dp[m-1][n-1];
-        for(int i=0;i<ans.size();i++){
-            if(ans[i]==1) {
-                return i;
-
-            }
-        }
-        return 0;
         
     }
 };
