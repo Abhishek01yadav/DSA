@@ -1,18 +1,31 @@
 class Solution {
 public:
     bool isIsomorphic(string s, string t) {
-        int m1[256]={0},m2[256]={0};
+        if(s.size() !=t.size()) return false;
+        int i=0,j=0;
+        unordered_map<int,int>mp,mpp;
+        while(i<s.size()){
+           if(mp.find(s[i])!=mp.end() && mp[s[i]]!=t[j]){
+        
+          return false;
+           }
+          mp[s[i]]=t[j];
+          i++;j++;
 
-        int n=s.size();
 
-        for(int i=0;i<n;i++){
-            if(m1[s[i]]!=m2[t[i]]){
-                return false;
-
-            }
-            m1[s[i]]=i+1;
-            m2[t[i]]=i+1;
         }
-        return true;
+        i=0,j=0;
+
+        while(i<t.size()){
+           if(mpp.find(t[i])!=mpp.end() && mpp[t[i]]!=s[j]){
+        
+          return false;
+           }
+          mpp[t[i]]=s[j];
+          i++;j++;
+
+
+        }
+       return true; 
     }
 };
