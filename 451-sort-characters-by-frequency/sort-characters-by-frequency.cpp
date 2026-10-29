@@ -1,30 +1,19 @@
 class Solution {
 public:
+ static inline unordered_map<char,int> mp;
+
+    static bool cmp(char a, char b) {
+        if (mp[a] != mp[b]) return mp[a] > mp[b];
+        return a < b;
+    }
     string frequencySort(string s) {
-       unordered_map<char,int>mp;
-
-        for(auto ele:s){
-            mp[ele]++;
-        }
-
-       vector< pair<int,char>>p;
-
-        for(auto x:mp){
-            p.push_back({x.second,x.first});
-
-        }
-
-        sort(p.rbegin(),p.rend());
-        string ans="";
-
-        for(auto it:p){
-            while(it.first --){
-                ans+=it.second;
-            }
-        }
-
-
-
-        return ans;
+         mp.clear();
+        for (char c : s) mp[c]++;
+        sort(s.begin(), s.end(), cmp);
+        return s;
+       
+        
+      
+        
     }
 };
