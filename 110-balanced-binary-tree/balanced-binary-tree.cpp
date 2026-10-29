@@ -1,23 +1,18 @@
 
 class Solution {
 public:
-int maxdepth(TreeNode* root){
+int height(TreeNode* root){
     if(root==NULL) return 0;
-    int lh=maxdepth(root->left); 
-    int rh=maxdepth(root->right);
-    if(lh==-1 || rh==-1) return -1;
-    if(abs(lh-rh) > 1) return -1;
-    return 1 + max(lh,rh);
+    return 1+ max(height(root->left),height(root->right));
+
 }
-
     bool isBalanced(TreeNode* root) {
-        if(maxdepth(root) == -1) return false;
-        return true;
-       
-    
-
-      
-
+        if(root==NULL) return true;
+     int lh=height(root->left);
+     int rh=height(root->right);
+     if(abs(lh-rh)>1) return false;
+    return isBalanced(root->left)&&
+     isBalanced(root->right);
     
         
     }
