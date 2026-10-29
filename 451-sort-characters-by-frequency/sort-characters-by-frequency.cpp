@@ -4,7 +4,7 @@ public:
 
     static bool cmp(char a, char b) {
         if (mp[a] != mp[b]) return mp[a] > mp[b];
-        return a < b;
+        return a > b;
     }
     string frequencySort(string s) {
          mp.clear();
