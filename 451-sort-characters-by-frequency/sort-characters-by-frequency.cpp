@@ -10,26 +10,17 @@ typedef pair<char,int>P;
             v[ch]={ch,freq+1};
         }
 
-       auto lambda=[&](P &p1,P &p2){
-        int freq1=p1.second;
-        int freq2=p2.second;
-        if(freq1!= freq2){
-            return  freq1>freq2;
-        }
-        return p1.first< p2.first;
+       auto lambda=[&](P p1,P p2){
+        return p1.second>p2.second;
        };
 
        sort(v.begin(),v.end(),lambda);
 
-       for(int i=0;i<=122;i++){
-        int freq=v[i].second;
-        if(freq>0){
-            char ch=v[i].first;
-            int freq=v[i].second;
-            string temp=string(freq,ch);
-            result+=temp;
+      for(auto &p:v){
+        if(p.second >0){
+            result+=string(p.second,p.first);
         }
-       }
+      }
         return result;
     }
 };
