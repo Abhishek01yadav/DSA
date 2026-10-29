@@ -1,15 +1,15 @@
 class Solution {
 public:
- static inline unordered_map<char,int> mp;
-
-    static bool cmp(char a, char b) {
-        if (mp[a] != mp[b]) return mp[a] > mp[b];
-        return a > b;
-    }
+ 
     string frequencySort(string s) {
-         mp.clear();
+        unordered_map<char,int>mp;
         for (char c : s) mp[c]++;
-        sort(s.begin(), s.end(), cmp);
+        sort(s.begin(), s.end(), [&](char a,char b){
+            if(mp[a]!=mp[b]) return mp[a]>mp[b];
+            return a<b;
+            
+        });
+        cout<<s;
         return s;
        
         
