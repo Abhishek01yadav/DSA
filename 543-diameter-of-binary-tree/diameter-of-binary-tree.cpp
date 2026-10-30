@@ -2,29 +2,27 @@
 class Solution {
 public:
 
-int maxi=INT_MIN;
-int height(TreeNode *node){
+
+int height(TreeNode *node,int &val){
     if(!node) return 0;
-    int lh=height(node->left);
-    int  rh=height(node->right);
+    int lh=height(node->left,val);
+    int  rh=height(node->right,val);
+    val=max(lh+rh,val);
     return max(lh,rh)+1;
 
 
 }
 
     int diameterOfBinaryTree(TreeNode* root) {
-        if(!root) return 0;
-       
         
-        int lh=height(root->left);
-        int rh=height(root->right);
-        maxi=max(lh+rh,maxi);
+       
+        int diameter=0;
+        height(root,diameter);
+        return diameter;
+        
 
-        diameterOfBinaryTree(root->left);
-        diameterOfBinaryTree(root->right);
 
 
-return maxi;
         
     }
 };
