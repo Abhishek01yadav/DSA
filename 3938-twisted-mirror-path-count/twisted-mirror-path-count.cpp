@@ -1,59 +1,45 @@
 class Solution {
 public:
-    int mod = 1e9 + 7;
-    int left = 0, up = 1;
-    int m, n;
+
+int  mod=1e9+7;
+int left=0,up=1;
+int m,n;
+
+int f(vector<vector<int>>& grid,int i,int j,int dir, vector<vector<array<int,2>>>&dp){
+//2 ->left
+//3->up
     
-    int uniquePaths(vector<vector<int>>& grid) {
-        m = grid.size();
-        n = grid[0].size();
-     vector<vector<array<int,2>>> dp(m,vector<array<int,2>>(n,{0,0}));
-      dp[0][0][left]=1;
-      //0th row
-      for(int col=1;col<n;col++){
-        dp[0][col][left]=1;
-        if(grid[0][col]==1){
-            break;
-        }
-      }
+    if(i>=m || j>=n  ) return 0;
+    if(i==m-1 && j==n-1) return 1;
+    if(dp[i][j][dir]!=-1) return dp[i][j][dir];
 
-//0th col
-      for(int row=1;row<m;row++){
-        dp[row][0][up]=1;
-        if(grid[row][0]==1){
-            break;
-        }
-      }
-
-//rest of the dp
-for(int row=1;row<m;row++){
-    for(int col=1;col<n;col++){
-        //left se aa sakte hai.
-        if(grid[row][col-1]==1){
-           dp[row][col][left]=dp[row][col-1][up];
+    
+    if(grid[i][j]==1){
+        if(dir==left){
+            int down=f(grid,i+1,j,up,dp);
+            return dp[i][j][dir]= down%mod;
         }
         else{
-             dp[row][col][left]=(dp[row][col-1][up]+dp[row][col-1][left])%mod;
-            
+            int right=f(grid,i,j+1,left,dp);
+            return dp[i][j][dir]=right%mod;
         }
-
-
-        //up se aa sakte hai
-        if(grid[row-1][col]==1){
-             dp[row][col][up]=dp[row-1][col][left];
-         
-        }
-        else{
-             dp[row][col][up]=(dp[row-1][col][left]+dp[row-1][col][up]) %mod;
-            
-        }
-
-
-
     }
+   
+   
+     int right=f(grid,i,j+1,left,dp);
+          int down=f(grid,i+1,j,up,dp);
+   
+    return  dp[i][j][dir]=(right%mod + down%mod)%mod;
+        
+   
 }
 
-return (dp[m-1][n-1][left]+dp[m-1][n-1][up])%mod;
-
+    int uniquePaths(vector<vector<int>>& grid) {
+        m=grid.size();
+        n=grid[0].size();
+       vector<vector<array<int,2>>>dp(m+1,vector<array<int,2>>(n,{-1,-1}));
+       return f(grid,0,0,left,dp);
+      
+        
     }
 };
