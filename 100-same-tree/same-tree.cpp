@@ -1,23 +1,16 @@
 
 class Solution {
 public:
-    void traversal(TreeNode* root, vector<int>& res) {
-        if (!root) {
-            res.push_back(INT_MIN);
-            return;
-        }
-        res.push_back(root->val);
-        traversal(root->left, res);
-
-        traversal(root->right, res);
-    }
-
     bool isSameTree(TreeNode* p, TreeNode* q) {
-        vector<int> resp, resq;
-        traversal(p, resp);
-        traversal(q, resq);
-        if (resp == resq)
-            return true;
-        return false;
+        if(p==NULL && q==NULL) return true;
+        if(p==NULL || q==NULL) return false;
+        if(p->val !=q->val) return false;
+
+       return  isSameTree(p->left,q->left)
+        && isSameTree(p->right,q->right);
+
+
+
+        
     }
 };
