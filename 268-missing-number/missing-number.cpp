@@ -1,20 +1,11 @@
 class Solution {
 public:
     int missingNumber(vector<int>& nums) {
-        //hashing ->precomputing + fetching.
-        // tc->o(n)
-        //sc->o(n)
         int n=nums.size();
-        vector<int>hash(n+1,0);
-        for(auto ele:nums){
-            hash[ele]=1;
+        int sumofn=n*(n+1)/2;
+        int actsum=accumulate(nums.begin(),nums.end(),0);
+        return sumofn-actsum;
 
-        }
-
-       for(int i=0;i<hash.size();i++){
-        if(hash[i]==0) return i;
-       }
-     return -1;
         
     }
 };
