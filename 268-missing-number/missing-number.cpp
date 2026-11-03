@@ -2,10 +2,16 @@ class Solution {
 public:
     int missingNumber(vector<int>& nums) {
         int n=nums.size();
-        int sumofn=n*(n+1)/2;
-        int actsum=accumulate(nums.begin(),nums.end(),0);
-        return sumofn-actsum;
+        int xor1=0,xor2=0;
+        for(int i=0;i<=n;i++){
+            xor1^=i;
+        }
 
+        for(int i=0;i<n;i++){
+            xor2^=nums[i];
+        }
+
+        return xor1^xor2;
         
     }
 };
